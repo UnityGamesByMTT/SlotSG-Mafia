@@ -144,6 +144,7 @@ public class SlotBehaviour : MonoBehaviour
     private int maxColCount = 18;
     private int FreeSpins = 0;
 
+    private bool CheckSpinAudio = false;
     private Tweener WinTween;
     private void Start()
     {
@@ -478,7 +479,6 @@ public class SlotBehaviour : MonoBehaviour
 
         }
         PayCalculator.DontDestroy.Clear();
-        if (audioController) audioController.PlayWLAudio("spin");
 
         if (TempList.Count > 0)
         {
@@ -492,17 +492,12 @@ public class SlotBehaviour : MonoBehaviour
 
     private void OnApplicationFocus(bool focus)
     {
-        if (focus)
-        {
-            if (!IsSpinning)
-            {
-                if (audioController) audioController.StopWLAaudio();
-            }
-        }
+
+        audioController.CheckFocusFunction(focus, CheckSpinAudio);
+
     }
     private IEnumerator TweenRoutine()
     {
-        IsSpinning = true;
         uiManager.StopLightAnim();
         if (currentBalance < currentTotalBet && !IsFreeSpin)
         {
@@ -516,6 +511,9 @@ public class SlotBehaviour : MonoBehaviour
 
             yield break;
         }
+        CheckSpinAudio=true;
+        IsSpinning = true;
+        if (audioController) audioController.PlayWLAudio("spin");
         ToggleButtonGrp(false);
         for (int i = 0; i < numberOfSlots; i++)
         {
@@ -578,7 +576,7 @@ public class SlotBehaviour : MonoBehaviour
         }
 
         yield return new WaitForSeconds(0.5f);
-        if (audioController) audioController.StopWLAaudio();
+        // if (audioController) audioController.StopWLAaudio();
 
         CheckPayoutLineBackend(SocketManager.resultData.linesToEmit, SocketManager.resultData.FinalsymbolsToEmit, SocketManager.resultData.jackpot);
         KillAllTweens();
@@ -778,7 +776,11 @@ public class SlotBehaviour : MonoBehaviour
                     }
                 }
             }
+        }else{
+
+            if (audioController) audioController.StopWLAaudio();
         }
+        CheckSpinAudio=false;
 
     }
 
