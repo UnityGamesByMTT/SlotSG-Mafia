@@ -10849,8 +10849,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: ' In this game, you''ll see five similar suitcases. Select one of them
-    to reveal your prize. '
+  m_text: In this game, you'll see five similar suitcases. Select them one by one
+    to reveal your prize until game is over.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d608491d82bbc4811bfedd89dc0af972, type: 2}
   m_sharedMaterial: {fileID: -8989478624062305485, guid: d608491d82bbc4811bfedd89dc0af972, type: 2}
@@ -23032,7 +23032,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.19737037}
   m_AnchorMax: {x: 0.5, y: 0.19737037}
-  m_AnchoredPosition: {x: 0, y: -9.000153}
+  m_AnchoredPosition: {x: 0, y: -9.000122}
   m_SizeDelta: {x: 713, y: 154}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1773536336
